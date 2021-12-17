@@ -10,9 +10,9 @@ Saddam Khan
 Front-End Development
 
 ### Member3:
-Sonali Srivastava
+Sonali Srivastava  
 Back-End Development & Documentation
 
 ### Member4:
-Shivam Kumar
+Shivam Kumar  
 Front-End Development

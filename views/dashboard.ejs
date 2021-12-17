@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id"
+        content="318686411318-8ne96sin1p0chpk0o41vij5587v3glgl.apps.googleusercontent.com"> -->
+    <title>Login</title>
+</head>
+
+<body>
+    <h1>Login</h1>
+    <p id='h1'></p>
+    <!-- <button onclick="Sign ">Logout</button> -->
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <script>
+        function onSignIn(googleUser) {
+            var id_token = googleUser.getAuthResponse().id_token;
+            // sending data to server
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST','/tokenSignIN');
+            xhr.setRequestHeader('Content-Type','application/json');
+            xhr.onload=()=>{
+                var data = JSON.parse(xhr.response);
+                // console.log('Signed in as: '+data[name]);
+                console.log(data)
+                document.getElementById('h1').innerHTML=data.user;
+            };
+            xhr.send(JSON.stringify({token:id_token}));
+        }
+
+    </script>
+    <a href="#" onclick="signOut();">Sign out</a>
+    <script>
+      function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+        });
+      }
+
+    
+
+    </script>
+    
+</body>
+
+</html>
